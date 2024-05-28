@@ -1,4 +1,4 @@
-#include "WiFiManager/WiFiManager.h"
+#include "lib/WiFiManager/WiFiManager.h"
 #include "WiFiManagerWrapper.h"
 
 WiFiManager wifiManager;

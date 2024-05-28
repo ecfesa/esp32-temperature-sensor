@@ -9,14 +9,6 @@ WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
 /**
- * Initializes the MQTT client and connects to the MQTT broker.
- */
-void initMQTT() {
-    mqttClient.setServer(mqtt_broker, mqtt_port);
-    connectMQTT();
-}
-
-/**
  * Attempts to connect to the MQTT broker.
  * Retries every 2 seconds if the connection fails.
  */
@@ -32,6 +24,15 @@ void connectMQTT() {
         }
     }
 }
+
+/**
+ * Initializes the MQTT client and connects to the MQTT broker.
+ */
+void initMQTT() {
+    mqttClient.setServer(mqtt_broker, mqtt_port);
+    connectMQTT();
+}
+
 
 /**
  * Checks the current MQTT connection status and reconnects if necessary.
