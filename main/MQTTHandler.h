@@ -1,6 +1,6 @@
 #pragma once
 
-#include <PubSubClient.h>
+#include "PubSubClient/PubSubClient.h"
 
 extern PubSubClient mqttClient;
 
