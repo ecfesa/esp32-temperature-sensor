@@ -106,6 +106,7 @@ void handleTemperature() {
 }
 
 void sendCurrentTemperature() {
+    String temperatureStr = String(currentTemperature);
     mqttClient.publish(topic_publish, temperatureStr.c_str());
 }
 
