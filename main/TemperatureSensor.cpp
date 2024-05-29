@@ -1,8 +1,10 @@
 #include <Arduino.h>
 #include "MQTTHandler.h"
 
-const int temp_sensor_pin = 25; // Temperature sensor analog pin
+const int temp_sensor_pin = 34; // Temperature sensor analog pin
 const char* topic_publish = "/TEF/temp008/attrs"; // MQTT topic to publish temperature data
+const char* topic_publish_debug = "/TEF/temp009/attrs"; // MQTT topic to publish sensor data for debugging
+const int sendDelay = 2500;
 
 // Table of values discovered from experimentation
 // Thanks rutpiv!
@@ -21,7 +23,7 @@ static const float temperatures[] = {
 static const int numValues = sizeof(sensorValues) / sizeof(sensorValues[0]);
 
 // Moving average filter parameters
-static const int filterSize = 10;
+static const int filterSize = 25;
 float temperatureHistory[filterSize];
 int historyIndex = 0;
 bool historyFilled = false;
@@ -95,6 +97,9 @@ float getSmoothedTemperature(float newTemperature) {
 void handleTemperature() {
     int sensorValue = analogRead(temp_sensor_pin);
     currentTemperature = getSmoothedTemperature(interpolateTemperature(sensorValue));
+    
+    String temperatureStr = String(sensorValue);
+    mqttClient.publish(topic_publish_debug, temperatureStr.c_str());
 
     delay(100);
 }
@@ -113,7 +118,7 @@ void sendCurrentTemperature() {
  */
 void loopTemperature() {
     unsigned long currentMillis = millis();
-    if (currentMillis - lastSendTime >= 1000) { // Check if 1 second has passed
+    if (currentMillis - lastSendTime >= sendDelay) {
         sendCurrentTemperature();
         lastSendTime = currentMillis; // Update the last send time
     }
