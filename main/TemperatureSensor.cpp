@@ -95,19 +95,16 @@ float getSmoothedTemperature(float newTemperature) {
 void handleTemperature() {
     int sensorValue = analogRead(temp_sensor_pin);
     currentTemperature = getSmoothedTemperature(interpolateTemperature(sensorValue));
-    
-    String temperatureStr = String(smoothedTemperature);
-    Serial.print("Temperature value: ");
-    Serial.println(temperatureStr.c_str());
 
-
-    Serial.println("Sleeping for 100ms");
     delay(100);
 }
 
 void sendCurrentTemperature() {
     String temperatureStr = String(currentTemperature);
     mqttClient.publish(topic_publish, temperatureStr.c_str());
+
+    Serial.print("Sent temperature value: ");
+    Serial.println(temperatureStr.c_str());
 }
 
 /**
