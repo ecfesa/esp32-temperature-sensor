@@ -1,7 +1,7 @@
 #include <WiFi.h>
 #include "MQTTHandler.h"
 
-const char* mqtt_broker = "172.16.0.10"; // MQTT Broker IP
+const char* mqtt_broker = "104.41.57.13"; // MQTT Broker IP
 const int mqtt_port = 1883; // MQTT Broker port
 const char* mqtt_id = "fiware_008"; // MQTT ID
 
@@ -42,3 +42,13 @@ void checkMQTT() {
         connectMQTT();
     }
 }
+
+/**
+ * Handles the MQTT client loop.
+ * This function should be called regularly in the main loop.
+ */
+void loopMQTT() {
+    mqttClient.loop();
+}
+
+

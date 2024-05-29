@@ -5,8 +5,3 @@
  * If no saved network is found, it creates an access point for Wi-Fi configuration.
  */
 void initWiFi();
-
-/**
- * Checks the current Wi-Fi connection status and reconnects if necessary.
- */
-void checkWiFi();

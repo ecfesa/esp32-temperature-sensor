@@ -16,8 +16,7 @@ void setup() {
 }
 
 void loop() {
-    checkWiFi();
     checkMQTT();
     handleTemperature();
-    mqttClient.loop();
+    loopMQTT();
 }
