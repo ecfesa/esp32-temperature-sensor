@@ -17,6 +17,6 @@ void setup() {
 
 void loop() {
     checkMQTT();
-    handleTemperature();
     loopMQTT();
+    loopTemperature();
 }
