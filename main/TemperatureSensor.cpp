@@ -3,7 +3,6 @@
 
 const int temp_sensor_pin = 34; // Temperature sensor analog pin
 const char* topic_publish = "/TEF/temp008/attrs"; // MQTT topic to publish temperature data
-const char* topic_publish_debug = "/TEF/temp009/attrs"; // MQTT topic to publish sensor data for debugging
 const int sendDelay = 2500;
 
 // Table of values discovered from experimentation
