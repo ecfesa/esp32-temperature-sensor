@@ -94,14 +94,12 @@ float getSmoothedTemperature(float newTemperature) {
  * Converts the analog sensor value to a temperature in degrees Celsius.
  * Uses logic to smooth out the values
  */
-void handleTemperature() {
+void readTemperature() {
     int sensorValue = analogRead(temp_sensor_pin);
     currentTemperature = getSmoothedTemperature(interpolateTemperature(sensorValue));
-    
-    String temperatureStr = String(sensorValue);
-    mqttClient.publish(topic_publish_debug, temperatureStr.c_str());
 
-    delay(100);
+    Serial.print("Analog pin reading: ");
+    Serial.println(String(sensorValue).c_str());
 }
 
 void sendCurrentTemperature() {
@@ -119,6 +117,7 @@ void sendCurrentTemperature() {
 void loopTemperature() {
     unsigned long currentMillis = millis();
     if (currentMillis - lastSendTime >= sendDelay) {
+        readTemperature(); // Read and save temperature value in variable
         sendCurrentTemperature();
         lastSendTime = currentMillis; // Update the last send time
     }
