@@ -1,6 +1,6 @@
 # ESP32 Temperature Monitor with MQTT
 
-This project uses an ESP32 to monitor temperature via an analog input, and sends the temperature data to a remote server using MQTT. The project also includes a Wi-Fi configuration portal using the ESP32's built-in capabilities, allowing easy setup and management of Wi-Fi credentials.
+This project uses an ESP32 to monitor temperature via an analog input and sends the temperature data to a remote server using MQTT. The project also includes a Wi-Fi configuration portal using the ESP32's built-in capabilities, allowing easy setup and management of Wi-Fi credentials.
 
 ## Features
 
@@ -25,11 +25,10 @@ This project uses an ESP32 to monitor temperature via an analog input, and sends
 
    You can install these libraries using the Arduino Library Manager (`Sketch` > `Include Library` > `Manage Libraries...`).
 
-
 ## File Descriptions
 
-- `main.cpp`
-  - Contains the setup and main loop of the program. Initializes Wi-Fi, MQTT, and handles the temperature monitoring loop.
+- `main.ino`
+  - Contains the setup and main loop of the program. Initializes Wi-Fi and MQTT, and handles the temperature monitoring loop.
 
 - `WiFiManagerWrapper.h`
   - Declares functions for initializing and checking the Wi-Fi connection.
@@ -53,18 +52,18 @@ This project uses an ESP32 to monitor temperature via an analog input, and sends
 
 1. **Upload the Code:**
 
-Connect your ESP32 to your computer and upload the `main.cpp` using the Arduino IDE.
+   Connect your ESP32 to your computer and upload the `main.cpp` using the Arduino IDE.
 
 2. **Configure Wi-Fi:**
 
-- When the ESP32 starts, it will create a Wi-Fi access point named `ESPTemp_ConfigAP`.
-- Connect to this access point using your phone or computer.
-- A captive portal should open automatically. If not, navigate to `192.168.4.1` in your web browser.
-- Enter your Wi-Fi credentials and connect.
+   - When the ESP32 starts, it will create a Wi-Fi access point named `AutoConnectAP`.
+   - Connect to this access point using your phone or computer.
+   - A captive portal should open automatically. If not, navigate to `192.168.4.1` in your web browser.
+   - Enter your Wi-Fi credentials and connect.
 
 3. **Monitor Temperature:**
 
-The ESP32 will read the temperature from the analog sensor and publish the data to the specified MQTT topic. You can monitor the serial output for debugging information.
+   The ESP32 will read the temperature from the analog sensor and publish the data to the specified MQTT topic. You can monitor the serial output for debugging information.
 
 ## License
 
