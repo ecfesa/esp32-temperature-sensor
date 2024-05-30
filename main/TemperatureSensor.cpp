@@ -3,7 +3,8 @@
 
 const int temp_sensor_pin = 34; // Temperature sensor analog pin
 const char* topic_publish = "/TEF/temp008/attrs"; // MQTT topic to publish temperature data
-const int sendDelay = 2500;
+const int sendDelay = 2500; // In milliseconds
+const int readDelay = 100; // In milliseconds
 
 // Table of values discovered from experimentation
 // Thanks rutpiv!
@@ -28,7 +29,7 @@ int historyIndex = 0;
 bool historyFilled = false;
 float currentTemperature = 0.0;
 unsigned long lastSendTime = 0; // Variable to store the last time the temperature was sent
-
+unsigned long lastReadTime = 0;
 /**
  * Interpolates the temperature from the given sensor value using a pre-defined table.
  * 
@@ -115,8 +116,11 @@ void sendCurrentTemperature() {
  */
 void loopTemperature() {
     unsigned long currentMillis = millis();
-    if (currentMillis - lastSendTime >= sendDelay) {
+    if (currentMillis - lastReadTime >= readDelay) {
         readTemperature(); // Read and save temperature value in variable
+        lastReadTime = currentMillis; // Update last read time
+    }
+    if (currentMillis - lastSendTime >= sendDelay) {
         sendCurrentTemperature();
         lastSendTime = currentMillis; // Update the last send time
     }
