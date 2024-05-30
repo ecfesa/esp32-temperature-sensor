@@ -52,7 +52,7 @@ This project uses an ESP32 to monitor temperature via an analog input and sends 
 
 1. **Upload the Code:**
 
-   Connect your ESP32 to your computer and upload the `main.cpp` using the Arduino IDE.
+   Connect your ESP32 to your computer and upload the `main.ino` using the Arduino IDE.
 
 2. **Configure Wi-Fi:**
 
