@@ -15,6 +15,10 @@ This project uses an ESP32 to monitor temperature via an analog input and sends 
 - Temperature Simulator (Learning Kit)
 - Fiware with MQTT Broker
 
+## Architecture Diagram
+
+![Architecture](assets/TemperatureSensorArchitecture.svg)
+
 ## Installation
 
 1. **Install Required Libraries:**
